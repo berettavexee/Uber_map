@@ -20,7 +20,7 @@ usage: uber_map.py [-h] [--csv-dir DIR] [--csv-filter FILTER] [--output OUTPUT]
 
 optional arguments:
   -h, --help           show this help message and exit
-  --csv-dir DIR        directory containing the csv files (default: csv)
+  --csv-dir DIR        directory containing the csv files (default: uber)
   --csv-filter FILTER  glob filter for the csv files (default: *.csv)
   --output OUTPUT      output HTML file (default: strava_local_heatmap.html)
 ```

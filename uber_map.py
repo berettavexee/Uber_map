@@ -72,7 +72,7 @@ def build_map(data, segments):
     return (None)
 
 def open_csv_files(files):
-	# open gpx files and extract tracks
+	# open CSV files and extract tracks
 	# Done with RegEx, dirty but 3 times faster than Lxml 
     data = []
     segments = []
@@ -102,10 +102,10 @@ def main(args):
     if not html_file[-5:] == '.html':
         print('ERROR output file must be .html')
         quit()
-    # parse GPX and Exiffiles
+    # parse CSV and Exiffiles
     csv_files = glob.glob(csv_dir+'/'+csv_filter)
     if not csv_files:
-        print('ERROR no GPX files in '+csv_dir)
+        print('ERROR no CSV files in '+csv_dir)
         quit()
 
     # We should be good with user input, now 
