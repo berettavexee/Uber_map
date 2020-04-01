@@ -1,7 +1,7 @@
 # Uber_map.py
 
-Python script to produce a Heatmap with Uber GDPR data.
-Fork of https://github.com/remisalmon/Strava-local-heatmap-browser modify to display Uber trips.
+Python script that produces an activity map using the CSV files provided by Uber as part of the GDPR access requests.
+Fork of https://github.com/remisalmon/Strava-local-heatmap-browser version, modified to display UBER data
 
 ## Features
 
