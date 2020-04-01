@@ -35,7 +35,7 @@ from folium.plugins import HeatMap
 
 # functions
 
-def build_map(data, segments):
+def build_map(trackpoint, trips):
     #Build and display Folium map
     html_file = args.output
     # color map for heatmap plugin 
@@ -55,11 +55,11 @@ def build_map(data, segments):
     fmap = Map(tiles = 'CartoDB dark_matter', prefer_canvas = True, max_zoom = 16)
 
     # Individual coordonate as heatmap 
-    HeatMap(data, radius = 5, blur = 5, gradient = heatmap_grad, max_zoom = 19).add_to(fmap)
+    HeatMap(trackpoint, radius = 5, blur = 5, gradient = heatmap_grad, max_zoom = 19).add_to(fmap)
     
     # Trace the trip as polyline 
-    for segment in segments:
-        PolyLine(locations=segment, weight=5, color = '#FFC300', opacity = 0.6).add_to(fmap)
+    for trip in trips:
+        PolyLine(locations=trip, weight=5, color = '#FFC300', opacity = 0.6).add_to(fmap)
 
     # Set map bounds 
     fmap.fit_bounds(fmap.get_bounds())
@@ -74,8 +74,8 @@ def build_map(data, segments):
 def open_csv_files(files):
 	# open CSV files and extract tracks
 	# Done with RegEx, dirty but 3 times faster than Lxml 
-    data = []
-    segments = []
+    trackpoint = []
+    trips = []
     for file in files:
         print('reading :'+file+'...')
         with open(file, 'r') as filehandler:
@@ -85,12 +85,12 @@ def open_csv_files(files):
                 tmp = re.findall('[-]*[0-9]{1,2}[.][0-9]{4,}',line)
                 if tmp:
                     if len(tmp) == 2: # 1 coordonate it is point  
-                        data.append([float(tmp[0]), float(tmp[1])])
+                        trackpoint.append([float(tmp[0]), float(tmp[1])])
                     if len(tmp) == 4: # 2 coordonate it is a trip
-                        segments.append([[float(tmp[0]), float(tmp[1])],[float(tmp[2]), float(tmp[3])]])     
-    print('Trackpoints:', len(data), 'trackpoints')
-    print('Segments:', len(segments), 'trips')
-    return(data, segments)
+                        trips.append([[float(tmp[0]), float(tmp[1])],[float(tmp[2]), float(tmp[3])]])     
+    print('Trackpoints:', len(trackpoint), 'trackpoints')
+    print('trips:', len(trips), 'trips')
+    return(trackpoint, trips)
 
 def main(args):
     # arguments
@@ -109,8 +109,8 @@ def main(args):
         quit()
 
     # We should be good with user input, now 
-    data, segments = open_csv_files(csv_files)
-    build_map(data, segments)
+    trackpoint, trips = open_csv_files(csv_files)
+    build_map(trackpoint, trips)
     return(None)
 
 if __name__ == '__main__':
