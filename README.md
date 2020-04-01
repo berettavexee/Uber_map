@@ -1,6 +1,6 @@
 # Uber_map.py
 
-Python script to reproduce the Strava Global Heatmap ([www.strava.com/heatmap](https://www.strava.com/heatmap)) with Uber GDPR data.
+Python script to produce a Heatmap with Uber GDPR data.
 Fork of https://github.com/remisalmon/Strava-local-heatmap-browser modify to display Uber trips.
 
 ## Features
@@ -11,14 +11,12 @@ Fork of https://github.com/remisalmon/Strava-local-heatmap-browser modify to dis
 ## Usage
 
 * Download your CSV files from Uber and add them to the `uber` folder  
-(see https://support.strava.com/hc/en-us/articles/216918437-Exporting-your-Data-and-Bulk-Export)
 * Run `python3 uber_map.py`
 
 ### Command-line options
 
 ```
-usage: uber_map.py [-h] [--csv-dir DIR]
-                                       [--csv-filter FILTER] [--output OUTPUT]
+usage: uber_map.py [-h] [--csv-dir DIR] [--csv-filter FILTER] [--output OUTPUT]
 
 optional arguments:
   -h, --help           show this help message and exit
@@ -30,6 +28,7 @@ optional arguments:
 ## Python dependencies
 
 ```
+python 3
 folium==0.10.0
 
 ```
