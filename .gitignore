@@ -1,3 +1,9 @@
+# CSV you don't want your home adress on github 
+*.csv
+
+# Folium map, you probably don't want you home adress on github
+*.html
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

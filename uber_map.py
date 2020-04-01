@@ -28,7 +28,7 @@ import re
 import glob
 import argparse
 import webbrowser
-from folium import Map, PolyLine # Marker
+from folium import Map, PolyLine  
 from folium.plugins import HeatMap
 
 # constants
@@ -84,7 +84,7 @@ def build_map(trackpoint, trips):
 def open_csv_files(files):
     """
     open CSV files and extract tracks
-    Done with RegEx, dirty but 3 times faster than Lxml
+    Done with RegEx, dirty but 3 times faster than Lxml and CSV File lib
     """
     trackpoint = []
     trips = []
@@ -96,9 +96,9 @@ def open_csv_files(files):
                 # Search for coordonates
                 tmp = re.findall('[-]*[0-9]{1,2}[.][0-9]{4,}', line)
                 if tmp:
-                    if len(tmp) == 2:  # 1 coordonate it is point
+                    if len(tmp) == 2:  # 1 coordonate it is trackpoint.
                         trackpoint.append([float(tmp[0]), float(tmp[1])])
-                    if len(tmp) == 4:  # 2 coordonate it is a trip
+                    if len(tmp) == 4:  # 2 coordonates it is a trip.
                         trips.append(
                             [[float(tmp[0]), float(tmp[1])],
                              [float(tmp[2]), float(tmp[3])]])
@@ -130,10 +130,23 @@ def main(args):
 
 if __name__ == '__main__':
     '''command line parameters'''
-    parser = argparse.ArgumentParser(description='Generate a map based on Uber csv files')
-    parser.add_argument('--csv-dir', dest='dir', default='uber', help='directory containing the csv files (default: uber)')
-    parser.add_argument('--csv-filter', dest='filter', default='*.csv', help='glob filter for the csv files (default: *.csv)')
-    parser.add_argument('--output', dest='output', default='uber_map.html', help='output HTML file (default: uber_map.html)')
+    parser = argparse.ArgumentParser(
+        description='Generate a map based on Uber csv files')
+    parser.add_argument(
+        '--csv-dir',
+        dest='dir',
+        default='uber',
+        help='directory containing the csv files (default: uber)')
+    parser.add_argument(
+        '--csv-filter',
+        dest='filter',
+        default='*.csv',
+        help='glob filter for the csv files (default: *.csv)')
+    parser.add_argument(
+        '--output',
+        dest='output',
+        default='uber_map.html',
+        help='output HTML file (default: uber_map.html)')
     args = parser.parse_args()
     '''Main function'''
     main(args)
