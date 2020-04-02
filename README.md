@@ -10,7 +10,7 @@ Fork of https://github.com/remisalmon/Strava-local-heatmap-browser version, modi
 
 ## Usage
 
-* Download your CSV files from Uber and add them to the `uber` folder  
+* Download your CSV files from Uber and drop them into `uber` folder.  
 * Run `python3 uber_map.py`
 
 ### Command-line options
@@ -28,7 +28,6 @@ optional arguments:
 ## Python dependencies
 
 ```
-python 3
 folium==0.10.0
 
 ```
